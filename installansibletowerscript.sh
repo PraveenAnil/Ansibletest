@@ -77,13 +77,13 @@ ANSIBLE_BECOME=True
 mkdir -p /var/log/tower
 echo "127.0.0.1     olcentgbl.trafficmanager.net" >> /etc/hosts
 ### Install Ansible Tower ###
-if ( bash setup.sh );
-    then
-     echo "Tower installed successfully"
-    else
-      exit 2
-    fi 
-
+#if ( bash setup.sh );
+#    then
+#     echo "Tower installed successfully"
+#    else
+#      exit 2
+#    fi 
+bash setup.sh
 
 ### Disable SELinux ###
 setenforce 0
@@ -98,9 +98,14 @@ url="https://$7/api/v1/config/"
 sleep 10
 curl -k -H "Content-Type: application/json" -X POST -u admin:$1 -d '{"eula_accepted" : "true", "company_name": "Spektra systems", "contact_email": "mazhar.warsi@spektrasystems.com", "contact_name": "Mazhar Warsi", "hostname": "6b654363fd20407b8808883cf8c421c2", "instance_count": 10, "license_date": 2123757894, "license_key": "23bacea857aedc64b97cce6db5f6e06e31903b712e3f843c3a1d50984ca52852", "license_type": "basic", "subscription_name": "Ansible Tower by Red Hat, Self-Support (10 Managed Nodes)"}' $url
 sleep 60
+####################################################
+
 ###############Restart Ansible Tower Service#################
-#while (0)
-##{
-#ansible-tower-service restart
-#}
+if ( ansible-tower-service restart );
+then 
+echo "service started sucessfully"
+elif 
+exit 2
+fi
+
 exit 0
