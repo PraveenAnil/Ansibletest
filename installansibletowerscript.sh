@@ -74,8 +74,8 @@ hostnamectl set-hostname tower
 
 ANSIBLE_BECOME_METHOD=’sudo’ 
 ANSIBLE_BECOME=True
-mkdir -p /var/log/tower
-echo "127.0.0.1     olcentgbl.trafficmanager.net" >> /etc/hosts
+
+
 ### Install Ansible Tower ###
 #if ( bash setup.sh );
 #    then
@@ -83,8 +83,14 @@ echo "127.0.0.1     olcentgbl.trafficmanager.net" >> /etc/hosts
 #    else
 #      exit 2
 #    fi 
+mkdir -p /var/log/tower
 bash setup.sh
-
+grep -Po '(?<=failed=).*' /var/log/tower/setup-*.log > x
+i=$(head -c 1  x)
+if ( $i -ne 0 );
+then
+exit 2
+fi
 ### Disable SELinux ###
 setenforce 0
 sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
