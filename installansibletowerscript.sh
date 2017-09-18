@@ -74,7 +74,7 @@ hostnamectl set-hostname tower
 
 ANSIBLE_BECOME_METHOD=’sudo’ 
 ANSIBLE_BECOME=True
-
+mkdir -p /var/log/tower
 echo "127.0.0.1     olcentgbl.trafficmanager.net" >> /etc/hosts
 ### Install Ansible Tower ###
 if ( bash setup.sh );
