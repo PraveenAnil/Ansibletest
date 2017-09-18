@@ -110,7 +110,7 @@ sleep 60
 if ( ansible-tower-service restart );
 then 
 echo "service started sucessfully"
-elif 
+else 
 exit 2
 fi
 
