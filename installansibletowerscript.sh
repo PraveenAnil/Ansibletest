@@ -79,14 +79,14 @@ echo "127.0.0.1     olcentgbl.trafficmanager.net" >> /etc/hosts
 ### Install Ansible Tower ###
 i="1"
 mkdir -p /var/log/tower/
-mkdir -p /var/log/towerbkp/
-while [ $i -ne 0 ]
-do
-bash setup.sh
-grep -Po '(?<=failed=).*' /var/log/tower/setup-*.log > x
-i=$(head -c 1  x)
-mv /var/log/tower/setup-*.log /var/log/towerbkp/
-done
+
+if ( bash setup.sh );
+    then
+     towerinstalled=1
+    else
+      exit 2
+    fi 
+
 
 ### Disable SELinux ###
 setenforce 0
