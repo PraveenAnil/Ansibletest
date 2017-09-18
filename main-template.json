@@ -61,7 +61,7 @@
         },
         "linuxOS": {
             "type": "string",
-            "allowedValues": ["RHEL"],
+            "allowedValues": ["RHEL","CentOS"],
             "defaultValue": "RHEL",
             "metadata": {
                 "description": "Select OS for Linux VMs including ansible Tower"
@@ -85,7 +85,7 @@
         },
         "_artifactsLocation": {
             "type": "string",
-            "defaultValue": "https://msftansibletestdrive.blob.core.windows.net/ansible/",
+            "defaultValue": "https://raw.githubusercontent.com/wmhussain/Ansibletest/master/",
             "metadata": {
                 "description": "The base URI where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated."
             }
