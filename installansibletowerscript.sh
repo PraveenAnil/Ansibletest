@@ -77,12 +77,9 @@ ANSIBLE_BECOME=True
 
 echo "127.0.0.1     olcentgbl.trafficmanager.net" >> /etc/hosts
 ### Install Ansible Tower ###
-i="1"
-mkdir -p /var/log/tower/
-
 if ( bash setup.sh );
     then
-     towerinstalled=1
+     echo "Tower installed successfully"
     else
       exit 2
     fi 
